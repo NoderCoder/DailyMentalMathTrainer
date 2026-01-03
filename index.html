@@ -459,7 +459,7 @@
                       ${session[currentQuestion].question}
                     </div>
                     
-                    <input type="number" id="answer-input" placeholder="Your answer" autofocus
+                    <input type="number" inputmode="numeric" pattern="[0-9]*" id="answer-input" placeholder="Your answer" autofocus
                       onkeypress="if(event.key==='Enter') submitAnswer()"
                       class="w-full text-3xl text-center border-2 border-gray-300 rounded-xl p-4 focus:border-indigo-600 focus:outline-none">
                   </div>
@@ -475,8 +475,12 @@
           
           setTimeout(() => {
             const input = document.getElementById('answer-input');
-            if (input) input.focus();
-          }, 100);
+            if (input) {
+              input.focus();
+              // Force keyboard on mobile
+              input.click();
+            }
+          }, 150);
         }
         
         else if (currentScreen === 'results') {
